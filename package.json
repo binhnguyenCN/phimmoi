@@ -7,7 +7,10 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "lint-js": "eslint . --fix",
+    "format": "prettier . --write",
+    "prepare": "husky install"
   },
   "dependencies": {
     "expo": "~45.0.0",
@@ -30,6 +33,7 @@
     "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "lint-staged": "^12.4.2",
