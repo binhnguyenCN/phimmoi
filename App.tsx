@@ -1,21 +1,13 @@
 // libs
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+// layouts
+import AppLayout from "@/components/AppLayout";
+// others
+import { ProvideAuth } from "@/auth/context";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Welcome back BinhNguyen!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "pink",
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});
+const App = () => (
+  <ProvideAuth>
+    <AppLayout />
+  </ProvideAuth>
+);
+export default App;
