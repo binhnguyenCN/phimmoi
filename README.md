@@ -11,3 +11,10 @@ npx husky add .husky/pre-commit "npx lint-staged"
 git add .husky/pre-commit
 ```
 
+## Screens
+- Login/ Register
+- Home
+- Detail
+- View
+- Search
+- Not Found
