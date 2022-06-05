@@ -27,7 +27,13 @@ module.exports = {
     "import"
   ],
   settings: {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
     "import/resolver": {
+      typescript: {
+        alwaysTryTypes: true
+      },
       alias: {
         map: [["@", "./"]]
       }
@@ -38,13 +44,15 @@ module.exports = {
     "import/namespace": 2,
     "import/default": 2,
     "import/export": 2,
-    "import/no-unresolved": [
-      2,
+    "import/no-unresolved": 2,
+    "import/extensions": [
+      "error",
+      "ignorePackages",
       {
-        commonjs: true,
-        amd: true,
-        caseSensitiveStrict: true,
-        caseSensitive: true
+        js: "never",
+        jsx: "never",
+        ts: "never",
+        tsx: "never"
       }
     ],
     "prettier/prettier": ["error"],
@@ -53,18 +61,21 @@ module.exports = {
     "react/function-component-definition": 0,
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [
-      1,
+      2,
       {
-        extensions: [".js", ".jsx", ".tsx"]
+        extensions: [".js", ".jsx", ".tsx", ".ts"]
       }
     ],
+    "react/no-unstable-nested-components": ["error", { allowAsProps: true }],
     "react-native/no-unused-styles": 2,
     "react-native/split-platform-components": 2,
+    "react/require-default-props": "off",
     "react-native/no-raw-text": 2,
     "react-native/no-single-element-style-arrays": 2,
     "no-use-before-define": [
       "error",
       { functions: false, classes: false, variables: false }
-    ]
+    ],
+    "no-param-reassign": [2, { props: false }]
   }
 };
