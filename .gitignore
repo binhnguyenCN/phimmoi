@@ -12,3 +12,5 @@ web-build/
 .vscode
 # macOS
 .DS_Store
+app/api/README.md
+.env
