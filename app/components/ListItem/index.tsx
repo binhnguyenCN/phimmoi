@@ -20,16 +20,19 @@ type ListItemProps = {
   image?: ImageSourcePropType;
   onPress?: () => void;
   IconComponent?: React.ReactNode;
+  testID?: string;
 };
+
 const ListItem: React.FC<ListItemProps> = ({
   title,
   subTitle,
   image,
   IconComponent,
-  onPress
+  onPress,
+  testID
 }) => (
   <TouchableHighlight onPress={onPress} underlayColor={colors.medium}>
-    <View style={styles.container}>
+    <View style={styles.container} testID={testID}>
       {IconComponent}
       {image && <Image style={styles.image} source={image} />}
       <View style={styles.detailsContainer}>

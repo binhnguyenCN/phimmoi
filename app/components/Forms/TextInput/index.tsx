@@ -14,10 +14,14 @@ type AppTextInputProps = {
   value?: any;
   onChangeText?: any;
   onBlur?: any;
+  type?: string;
+  testID?: string;
 };
+
 const AppTextInput = ({
   icon,
   width = "100%",
+  testID,
   ...otherProps
 }: AppTextInputProps) => (
   <View style={[styles.container, { width }]}>
@@ -32,6 +36,7 @@ const AppTextInput = ({
     <TextInput
       placeholderTextColor={colors.medium}
       style={[defaultStyles.text, styles.inputText]}
+      testID={testID}
       {...otherProps}
     />
   </View>

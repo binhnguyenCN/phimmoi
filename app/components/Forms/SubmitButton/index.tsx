@@ -1,13 +1,17 @@
 // libs
 import { useFormikContext } from "formik";
 import React from "react";
-import { StyleSheet } from "react-native";
 // layouts
 import Button from "@/components/Button";
 
-export default function SubmitButton({ title }) {
-  const { handleSubmit } = useFormikContext();
-  return <Button title={title} onPress={handleSubmit} />;
-}
+type SubmitBtnProps = {
+  title: string;
+  testID?: string;
+};
 
-const styles = StyleSheet.create({});
+const SubmitButton: React.FC<SubmitBtnProps> = ({ title, testID }) => {
+  const { handleSubmit } = useFormikContext();
+  return <Button title={title} onPress={handleSubmit} testID={testID} />;
+};
+
+export default SubmitButton;

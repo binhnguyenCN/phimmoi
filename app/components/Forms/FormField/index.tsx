@@ -5,7 +5,7 @@ import React from "react";
 import ErrorMessage from "@/components/Forms/ErrorMessage";
 import TextInput from "@/components/Forms/TextInput";
 
-const FormField = ({ name, width = "100%", ...otherProps }) => {
+const FormField = ({ name, width = "100%", testID, ...otherProps }) => {
   const { setFieldTouched, setFieldValue, errors, touched, values } =
     useFormikContext();
   return (
@@ -15,6 +15,7 @@ const FormField = ({ name, width = "100%", ...otherProps }) => {
         value={values[name]}
         onChangeText={(text) => setFieldValue(name, text)}
         onBlur={() => setFieldTouched(name)}
+        testID={testID}
         {...otherProps}
       />
       <ErrorMessage error={errors[name]} visible={touched[name]} />

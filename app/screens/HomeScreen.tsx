@@ -4,45 +4,50 @@ import React, { useEffect } from "react";
 // layouts
 import Screen from "@/components/Layout";
 import Text from "@/components/Text";
-import Button from "@/components/Button";
-// import ActivityIndicator from "@/components/ActivityIndicator";
+// import Button from "@/components/Button";
+import ActivityIndicator from "@/components/ActivityIndicator";
 import Carousel from "@/mains/Carousel";
 import PopularityCategory from "@/mains/PopularityCategory";
 import TopRatedCategory from "@/mains/TopRatedCategory";
+// import TrendingCategory from "@/mains/TrendingCategory";
 // constants
 import colors from "@/constants/colors";
 // others
 import useApi from "@/hooks/useApi";
 import movieApi from "@/api/movies";
-import TrendingCategory from "@/mains/TrendingCategory";
+import movieList from "@/mock/movies";
 
 const HomeScreen = () => {
   const {
-    data: movies,
     error,
-    // loading,
-    request: loadMovies
+    loading
+    // data: movies,
+    // request: loadMovies
   } = useApi(movieApi.getHomeData);
   useEffect(() => {
-    loadMovies();
+    // loadMovies();
   }, []);
-
+  const movies = {
+    "Popular Movies": movieList.results,
+    "Top Rated Movies": movieList.results,
+    "Trending Movies": movieList.results
+  };
   return (
     <>
-      {/* <ActivityIndicator visible={loading} /> */}
+      <ActivityIndicator visible={loading} />
       <Screen style={styles.screen}>
         {error && (
           <>
             <Text>Could not retrieve the listings.</Text>
-            <Button title="Retry" onPress={loadMovies} />
+            {/* <Button title="Retry" onPress={loadMovies} /> */}
           </>
         )}
-        {movies.length !== 0 && (
-          <ScrollView>
+        {movies && (
+          <ScrollView testID="TestId__homescreen">
             <Carousel movies={movies["Popular Movies"].slice(0, 5)} />
             <PopularityCategory movies={movies["Popular Movies"]} />
             <TopRatedCategory movies={movies["Top Rated Movies"]} />
-            <TrendingCategory movies={movies["Trending Movies"]} />
+            {/* <TrendingCategory movies={movies["Trending Movies"]} /> */}
           </ScrollView>
         )}
       </Screen>

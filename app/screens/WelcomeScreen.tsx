@@ -25,8 +25,17 @@ const WelcomeScreen = () => (
         </Text>
       </View>
       <View style={styles.buttonsContainer}>
-        <Button title="register" onPress={() => navigate("Register")} />
-        <Button color="#fff" title="login" onPress={() => navigate("Login")} />
+        <Button
+          title="register"
+          onPress={() => navigate("Register")}
+          testID="TestId__registerBtn"
+        />
+        <Button
+          color="#fff"
+          title="login"
+          onPress={() => navigate("Login")}
+          testID="TestId__loginBtn"
+        />
       </View>
     </ImageBackground>
   </View>

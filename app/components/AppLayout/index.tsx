@@ -7,6 +7,7 @@ import AppNavigator from "@/navigation/AppNavigator";
 import AuthNavigator from "@/navigation/AuthNavigator";
 import NavigationTheme from "@/navigation/NavigationTheme";
 import { navigationRef } from "@/navigation/rootNavigation";
+// others
 import { useAuth } from "@/auth/context";
 
 const AppLayout = () => {
@@ -21,17 +22,16 @@ const AppLayout = () => {
     }
     showPlashScreen();
   }, []);
-
   useEffect(() => {
     async function hidePlashScreen() {
       if (isReady) await SplashScreen.hideAsync();
     }
     hidePlashScreen();
   }, [isReady]);
-
   if (!isReady) {
     return null;
   }
+
   return (
     <NavigationContainer theme={NavigationTheme} ref={navigationRef}>
       {user ? <AppNavigator /> : <AuthNavigator />}

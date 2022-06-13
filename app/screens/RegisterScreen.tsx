@@ -1,65 +1,38 @@
 // libs
 import { Image, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import * as yup from "yup";
 // layouts
 import Screen from "@/components/Layout";
-import {
-  Form,
-  FormField,
-  ErrorMessage,
-  SubmitButton
-} from "@/components/Forms";
+import RegisterForm from "@/mains/Forms/RegisterForm";
 // others
+import { useAuth } from "@/auth/context";
+
 const logo = require("../../assets/logo.png");
 
-const schema = yup.object().shape({
-  email: yup.string().required().email().label("Email"),
-  password: yup.string().required().min(4).label("Password")
-});
+type valueFormProps = {
+  email: string;
+  password: string;
+  retypePassword: string;
+};
 
 const RegisterScreen = () => {
   const [loginFailed, setLoginFailed] = useState(false);
-  const handleSubmit = ({ email }) => {
-    if (email !== "binh@gmail.com") {
+  const { storeUser } = useAuth();
+  const handleSubmit = (value: valueFormProps) => {
+    if (value.email !== "binh@gmail.com") {
       setLoginFailed(true);
+      return;
     }
+    storeUser({
+      name: "Binh Nguyen",
+      email: "binh@gmail.com"
+    });
   };
 
   return (
     <Screen style={styles.container}>
       <Image source={logo} style={styles.logo} />
-      <Form
-        initialValues={{ email: "", password: "" }}
-        onSubmit={(values) => {
-          handleSubmit(values);
-        }}
-        validationSchema={schema}
-      >
-        <ErrorMessage
-          error="Invalid email and/or password"
-          visible={loginFailed}
-        />
-        <FormField
-          autoCapitalize="none"
-          autoCorrect={false}
-          icon="email"
-          keyboardType="email-address"
-          placeholder="Email"
-          textContentType="emailAddress"
-          name="email"
-        />
-        <FormField
-          autoCapitalize="none"
-          autoCorrect={false}
-          icon="lock"
-          placeholder="Password"
-          secureTextEntry
-          textContentType="password"
-          name="password"
-        />
-        <SubmitButton title="Login" />
-      </Form>
+      <RegisterForm loginFailed={loginFailed} onSubmit={handleSubmit} />
     </Screen>
   );
 };
