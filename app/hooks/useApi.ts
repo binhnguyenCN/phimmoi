@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 const useApi = (apiFunc) => {
-  const [data, setData] = useState<any>([]);
+  const [data, setData] = useState<any>(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 

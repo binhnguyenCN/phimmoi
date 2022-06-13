@@ -2,13 +2,15 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
-    "react-native/react-native": true
+    "react-native/react-native": true,
+    "jest/globals": true
   },
   extends: [
     "airbnb",
+    "eslint-config-prettier",
     "plugin:react/recommended",
     "plugin:import/recommended",
-    "eslint-config-prettier"
+    "plugin:jest/all"
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -19,12 +21,15 @@ module.exports = {
     sourceType: "module"
   },
   plugins: [
+    "@typescript-eslint",
     "react",
     "react-native",
-    "@typescript-eslint",
     "prettier",
+    "testing-library",
+    "detox",
     "babel",
-    "import"
+    "import",
+    "jest"
   ],
   settings: {
     "import/parsers": {
@@ -72,10 +77,42 @@ module.exports = {
     "react/require-default-props": "off",
     "react-native/no-raw-text": 2,
     "react-native/no-single-element-style-arrays": 2,
+    "react/no-unused-prop-types": "off",
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error",
+    "jest/expect-expect": "off",
+    "jest/prefer-expect-assertions": [
+      "off",
+      { onlyFunctionsWithAsyncKeyword: true }
+    ],
+    "testing-library/consistent-data-testid": [
+      2,
+      {
+        testIdAttribute: ["testID"],
+        testIdPattern: "^TestId(__[A-z]*)?$"
+      }
+    ],
+    "testing-library/await-async-query": "error",
+    "testing-library/no-await-sync-query": "error",
+    "testing-library/no-debugging-utils": "warn",
+    "testing-library/no-dom-import": "off",
     "no-use-before-define": [
       "error",
       { functions: false, classes: false, variables: false }
     ],
     "no-param-reassign": [2, { props: false }]
-  }
+  },
+  overrides: [
+    {
+      files: ["*.e2e.ts"],
+      env: {
+        jest: true,
+        "detox/detox": true,
+        "jest/globals": true
+      }
+    }
+  ]
 };

@@ -1,7 +1,9 @@
 {
   "extends": "expo/tsconfig.base",
   "exclude": ["node_modules"],
+  "types": ["node", "jest"],
   "compilerOptions": {
+    "experimentalDecorators": true,
     "module": "ES6",
     "target": "ESNext",
     "lib": ["DOM", "ESNext"],

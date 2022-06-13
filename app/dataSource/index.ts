@@ -7,12 +7,20 @@ const categories = {
   },
   topRated: {
     title: "Top Rated"
+  },
+  related: {
+    title: "MORE LIKE THIS"
   }
 };
 
 const buttons = {
   watchNow: {
-    title: "Watch Now"
+    title: "Watch Now",
+    screen: "WatchMovie"
+  },
+  trailerNow: {
+    title: "Watch trailer",
+    screen: "WatchMovie"
   }
 };
 

@@ -1,0 +1,51 @@
+{
+  "testRunner": "jest",
+  "runnerConfig": "e2e/config.json",
+  "skipLegacyWorkersInjection": true,
+  "apps": {
+    "ios": {
+      "name": "Phimmoi",
+      "type": "ios.app",
+      "binaryPath": "bin/phimmoi.app"
+    },
+    "ios.release": {
+      "name": "Phimmoi",
+      "type": "ios.app",
+      "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/Phimmoi.app",
+      "build": "xcodebuild -project ios/Phimmoi.xcodeproj -scheme Phimmoi -sdk iphonesimulator -derivedDataPath ios/build"
+    },
+    "android": {
+      "name": "ecinema",
+      "type": "android.apk",
+      "binaryPath": "bin/phimmoi.app"
+    }
+  },
+  "devices": {
+    "simulator": {
+      "type": "ios.simulator",
+      "device": {
+        "type": "iPhone 11"
+      }
+    },
+    "emulator": {
+      "type": "android.emulator",
+      "device": {
+        "avdName": "Pixel_3a_API_30_x86"
+      }
+    }
+  },
+  "configurations": {
+    "ios": {
+      "device": "simulator",
+      "app": "ios"
+    },
+    "ios.sim.release": {
+      "device": "simulator",
+      "app": "ios.release"
+    },
+    "android": {
+      "device": "emulator",
+      "app": "android"
+    }
+  }
+}

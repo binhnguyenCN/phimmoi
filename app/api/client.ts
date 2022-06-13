@@ -11,9 +11,9 @@ const apiClient = axios.create({
   params: { api_key: API_KEY }
 });
 
+// eslint-disable-next-line jest/require-hook
 axios.interceptors.response.use(
   async (response) => {
-    // eslint-disable-next-line no-console
     if (response.status === 200) {
       cache.store(settings().apiUrl, response.data);
       return response;
