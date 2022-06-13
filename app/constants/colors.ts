@@ -1,11 +1,11 @@
 const colors = {
-  primary: "#DC0710", // ok
+  primary: "#DC0710",
   secondary: "#4ecdc4",
-  black: "#222222", // ok
-  white: "#FFFFFF", // ok
-  medium: "#757575", // ok
+  black: "#222222",
+  white: "#FFFFFF",
+  medium: "#757575",
   light: "#f8f4f4",
-  dark: "#00020", // ok
-  danger: "#ff5252" // ok
+  dark: "#00020",
+  danger: "#ff5252"
 };
 export default colors;

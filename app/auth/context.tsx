@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // libs
 import React, { createContext, useContext, useMemo, useState } from "react";
 // storages
@@ -10,7 +11,6 @@ type UserProps = {
 type AuthContextProps = {
   user: UserProps | null;
   removeUser: () => Promise<void>;
-  // eslint-disable-next-line no-unused-vars
   storeUser: (userInfo: UserProps) => Promise<void>;
   restoreUser: () => Promise<void>;
 };
@@ -21,11 +21,10 @@ type ProvideAuthProps = {
 // @ts-ignore
 export const AuthContext = createContext<AuthContextProps>();
 
+// name: "Binh Nguyen",
+// email: "ngvanbinh2001@gmail.com"
 export const ProvideAuth = ({ children, value }: ProvideAuthProps) => {
-  const [user, setUser] = useState<UserProps | null>({
-    name: "Binh Nguyen",
-    email: "ngvanbinh2001@gmail.com"
-  });
+  const [user, setUser] = useState<UserProps | null>(null);
   const restoreUser = async () => {
     const userInfo = await authStorage.getUser();
     if (userInfo) setUser(user);
