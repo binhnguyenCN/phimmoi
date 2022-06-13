@@ -8,7 +8,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.black
   },
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: colors.black
   }
 });
 

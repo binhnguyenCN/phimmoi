@@ -9,12 +9,14 @@ type LayoutScreenProps = {
   hasHeader?: boolean;
   style?: object;
   children?: React.ReactNode;
+  testID?: string;
 };
 
 const Screen: React.FC<LayoutScreenProps> = ({
   hasHeader = false,
   style,
-  children
+  children,
+  testID
 }) => (
   <SafeAreaView
     style={[
@@ -22,7 +24,9 @@ const Screen: React.FC<LayoutScreenProps> = ({
       hasHeader ? { paddingTop: 0 } : { paddingTop: Constants.statusBarHeight }
     ]}
   >
-    <View style={[styles.container, style]}>{children}</View>
+    <View style={[styles.container, style]} testID={testID}>
+      {children}
+    </View>
   </SafeAreaView>
 );
 export default Screen;

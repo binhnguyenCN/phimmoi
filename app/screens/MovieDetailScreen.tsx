@@ -5,7 +5,7 @@ import { Image } from "react-native-expo-image-cache";
 // layouts
 import Text from "@/components/Text";
 import Button from "@/components/Button";
-// import ActivityIndicator from "@/components/ActivityIndicator";
+import ActivityIndicator from "@/components/ActivityIndicator";
 import Screen from "@/components/Layout";
 // others
 import colors from "@/constants/colors";
@@ -14,13 +14,14 @@ import { imageOriginal, imageResize } from "@/utils/images";
 import useApi from "@/hooks/useApi";
 import movieApi from "@/api/movies";
 import RelatedCategory from "@/mains/RelatedCategory";
+import { buttons } from "@/dataSource";
 
 const MovieDetailScreen = ({ route, navigation }) => {
   const movieId: number = route.params;
   const {
-    data: movie,
+    loading,
     error,
-    // loading,
+    data: movie,
     request: loadMovie
   } = useApi(movieApi.getMovieDetails);
   const [showStarring, setShowStarring] = useState(false);
@@ -30,27 +31,29 @@ const MovieDetailScreen = ({ route, navigation }) => {
 
   return (
     <>
-      {/* <ActivityIndicator visible={loading} /> */}
+      <ActivityIndicator visible={loading} />
       {error && (
         <Screen>
           <Text>Not found</Text>
           <Button title="Retry" onPress={loadMovie} />
         </Screen>
       )}
-      {movie.length !== 0 && (
-        <Screen>
-          <Image
-            style={styles.image}
-            uri={imageOriginal(movie?.data.poster_path)}
-            preview={{ uri: imageResize(movie?.data.poster_path, "w200") }}
-            tint="light"
-          />
-          <ScrollView style={styles.screen}>
+      {movie && (
+        <Screen testID="TestId__detail">
+          <View testID="TestId__thumbnail">
+            <Image
+              style={styles.image}
+              uri={imageOriginal(movie?.data.poster_path)}
+              preview={{ uri: imageResize(movie?.data.poster_path, "w200") }}
+              tint="light"
+            />
+          </View>
+          <ScrollView style={styles.screen} testID="TestId__info">
             <Text style={styles.title}>{movie?.data.title}</Text>
             <Text style={styles.year}>
               Release date: {movie?.data.release_date}
             </Text>
-            <View style={styles.ageContainer}>
+            <View style={styles.ageContainer} testID="TestId__age">
               <Text style={styles.age}>
                 {movie?.data.adult ? "+18" : "+13"}
               </Text>
@@ -79,14 +82,19 @@ const MovieDetailScreen = ({ route, navigation }) => {
               <Text style={styles.official}>Official website</Text>
             </Pressable>
             <Button
-              title="Watch now"
-              onPress={() => navigate("WatchMovie", movie)}
+              title={buttons.watchNow.title}
+              onPress={() => navigate(buttons.watchNow.screen, movie?.data)}
+              testID="TestId__watchBtn"
             />
             <Button
-              title="Watch trailer"
-              onPress={() => navigate("WatchMovie", movie)}
+              title={buttons.trailerNow.title}
+              onPress={() => navigate(buttons.watchNow.screen, movie?.data)}
+              testID="TestId__trailerBtn"
             />
-            <RelatedCategory movies={movie?.similar} navigation={navigation} />
+            <RelatedCategory
+              movies={movie?.similar.slice(0, 9)}
+              navigation={navigation}
+            />
           </ScrollView>
         </Screen>
       )}

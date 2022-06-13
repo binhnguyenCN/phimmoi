@@ -5,10 +5,10 @@ import React from "react";
 import Screen from "@/components/Layout";
 import ListItem from "@/components/ListItem";
 import AppIcon from "@/components/AppIcon";
-import colors from "@/constants/colors";
 // others
+import colors from "@/constants/colors";
 import { useAuth } from "@/auth/context";
-
+// img
 const avatar = require("../../assets/avatar.png");
 
 const AccountScreen = () => {
@@ -16,6 +16,7 @@ const AccountScreen = () => {
   const logOut = () => {
     removeUser();
   };
+
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
@@ -27,6 +28,7 @@ const AccountScreen = () => {
           IconComponent={
             <AppIcon name="logout" backgroundColor={colors.primary} />
           }
+          testID="TestId__logoutBtn"
           onPress={logOut}
         />
       </View>
