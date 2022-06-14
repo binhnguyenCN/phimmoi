@@ -9,7 +9,7 @@ import ActivityIndicator from "@/components/ActivityIndicator";
 import Carousel from "@/mains/Carousel";
 import PopularityCategory from "@/mains/PopularityCategory";
 import TopRatedCategory from "@/mains/TopRatedCategory";
-// import TrendingCategory from "@/mains/TrendingCategory";
+import TrendingCategory from "@/mains/TrendingCategory";
 // constants
 import colors from "@/constants/colors";
 // others
@@ -28,10 +28,11 @@ const HomeScreen = () => {
     // loadMovies();
   }, []);
   const movies = {
-    "Popular Movies": movieList.results,
-    "Top Rated Movies": movieList.results,
-    "Trending Movies": movieList.results
+    "Popular Movies": movieList.popular,
+    "Top Rated Movies": movieList.topRated,
+    "Trending Movies": movieList.trending
   };
+
   return (
     <>
       <ActivityIndicator visible={loading} />
@@ -47,7 +48,7 @@ const HomeScreen = () => {
             <Carousel movies={movies["Popular Movies"].slice(0, 5)} />
             <PopularityCategory movies={movies["Popular Movies"]} />
             <TopRatedCategory movies={movies["Top Rated Movies"]} />
-            {/* <TrendingCategory movies={movies["Trending Movies"]} /> */}
+            <TrendingCategory movies={movies["Trending Movies"]} />
           </ScrollView>
         )}
       </Screen>

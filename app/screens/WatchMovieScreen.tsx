@@ -14,7 +14,7 @@ const WatchMovieScreen = ({ route }) => {
   const movieTitle: string = route.params.title;
 
   return (
-    <Screen>
+    <Screen testID="TestId__movie">
       <Text style={styles.title}>{movieTitle}</Text>
       <WebView
         scalesPageToFit
@@ -22,7 +22,6 @@ const WatchMovieScreen = ({ route }) => {
         javaScriptEnabled
         originWhitelist={["*"]}
         allowsFullscreenVideo
-        testID="TestId__movie"
         source={{
           html: `
             <iframe
@@ -44,7 +43,8 @@ const WatchMovieScreen = ({ route }) => {
 const styles = StyleSheet.create({
   title: {
     color: colors.white,
-    fontSize: 50
+    fontSize: 30,
+    padding: 10
   }
 });
 export default WatchMovieScreen;

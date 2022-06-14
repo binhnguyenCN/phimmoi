@@ -7,13 +7,13 @@ import Text from "@/components/Text";
 import Button from "@/components/Button";
 import ActivityIndicator from "@/components/ActivityIndicator";
 import Screen from "@/components/Layout";
+import RelatedCategory from "@/mains/RelatedCategory";
 // others
 import colors from "@/constants/colors";
 import { navigate } from "@/navigation/rootNavigation";
 import { imageOriginal, imageResize } from "@/utils/images";
 import useApi from "@/hooks/useApi";
 import movieApi from "@/api/movies";
-import RelatedCategory from "@/mains/RelatedCategory";
 import { buttons } from "@/dataSource";
 
 const MovieDetailScreen = ({ route, navigation }) => {
